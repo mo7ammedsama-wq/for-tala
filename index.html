@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Tala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parisienne&family=Caveat:wght@500;700&family=Nunito:wght@400;600;800&display=swap">
+<style>
+/* Layout: a love note from Mody — envelope opens to one note card at a time, hearts rising on a blush ground; single deliberate look */
+:root{
+  --ground:#ffe3ea; --ground-2:#fff4f6; --paper:#ffffff; --ink:#4a0d1c;
+  --red:#e8193c; --pink:#ff7a93; --soft:#ffd0da; --gold:#ffbf3c; --muted:#a64d63; --line:#ffc7d3;
+  --script:"Parisienne","Brush Script MT",cursive;
+  --hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  --sans:"Nunito",system-ui,sans-serif;
+  color-scheme:light;
+}
+html,body{min-height:100%}
+body{margin:0;background:radial-gradient(120% 80% at 50% 0%,var(--ground-2),var(--ground) 65%);color:var(--ink);font-family:var(--sans);font-size:16px;padding-inline:16px;padding-block:24px;box-sizing:border-box;overflow-x:hidden}
+#hearts,#confetti{position:fixed;inset:0;pointer-events:none}
+#hearts{z-index:0}#confetti{z-index:2}
+main{position:relative;z-index:1;max-width:540px;margin:0 auto;min-height:calc(100vh - 48px);display:grid;place-items:center}
+.page{width:100%;display:flex;flex-direction:column;gap:20px;animation:pop .6s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes pop{from{transform:scale(.92) translateY(10px);opacity:.4}to{transform:none;opacity:1}}
+.card{background:var(--paper);border-radius:22px;padding:28px 22px;box-shadow:0 14px 40px rgb(232 25 60/.18);display:flex;flex-direction:column;gap:18px;border:2px solid var(--soft)}
+.from{font-family:var(--hand);font-size:1.25rem;color:var(--muted);margin:0}
+h1,h2{margin:0;text-wrap:balance}
+h2{font-family:var(--hand);font-weight:700;font-size:2.2rem;line-height:1.05;color:var(--red)}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn{align-self:center;background:var(--red);color:#fff;border:0;border-radius:999px;padding:14px 32px;font-weight:800;font-size:1.05rem;box-shadow:0 6px 0 #b5102c;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #b5102c}
+.btn:disabled{background:var(--soft);box-shadow:0 6px 0 #f3aebd;color:#fff;cursor:not-allowed;transform:none}
+.btn.ghost{background:transparent;color:var(--muted);box-shadow:none;font-weight:600;padding:8px 14px}
+
+/* envelope */
+.env-wrap{align-items:center;text-align:center;gap:24px}
+.envelope{position:relative;width:min(300px,82vw);aspect-ratio:3/2;max-width:100%;background:var(--paper);border:0;border-radius:14px;box-shadow:0 18px 40px rgb(232 25 60/.25);padding:0;overflow:hidden;animation:wiggle 2.4s ease-in-out infinite}
+.envelope::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom right,transparent 49.5%,var(--soft) 50%) left/50% 100% no-repeat,linear-gradient(to bottom left,transparent 49.5%,var(--soft) 50%) right/50% 100% no-repeat}
+.envelope .flap{position:absolute;left:0;right:0;top:0;height:60%;background:var(--pink);clip-path:polygon(0 0,100% 0,50% 100%)}
+.envelope .seal{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:var(--red);display:grid;place-items:center;color:#fff;font-size:1.6rem;box-shadow:0 4px 0 #b5102c}
+.envelope .addr{position:absolute;bottom:10px;left:0;right:0;font-family:var(--hand);font-size:1.3rem;color:var(--ink)}
+@keyframes wiggle{0%,100%{transform:rotate(0)}8%{transform:rotate(-3deg)}16%{transform:rotate(3deg)}24%{transform:rotate(0)}}
+.tap{font-family:var(--hand);font-size:1.5rem;color:var(--red);margin:0}
+
+/* hello */
+.hello{text-align:center;align-items:center;gap:14px;padding-block:34px}
+.hello h1{font-family:var(--script);font-weight:400;font-size:clamp(3.8rem,17vw,6rem);line-height:1;color:var(--red)}
+.hello p{font-family:var(--hand);font-size:1.6rem;line-height:1.25;margin:0;max-width:22ch}
+.sig{font-family:var(--script);font-size:2rem;color:var(--pink);margin:0}
+
+.days{display:flex;flex-direction:column;gap:12px}
+.day{display:grid;grid-template-columns:7rem 1fr 1fr;gap:8px;align-items:center}
+.day-name{font-weight:800;line-height:1.1}
+.day-name small{display:block;font-weight:400;font-size:.78rem;color:var(--muted)}
+.slot{position:relative;background:var(--ground-2);border:2px solid var(--line);color:var(--ink);border-radius:14px;padding:12px 6px;font-weight:600;transition:transform .15s,background .15s}
+.slot:hover{border-color:var(--pink)}
+.slot[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff;transform:scale(1.05)}
+.fav{position:absolute;top:-10px;right:-4px;background:var(--gold);color:var(--ink);font-size:.62rem;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.plans{display:flex;flex-direction:column;gap:12px}
+.plan{text-align:left;display:flex;gap:14px;align-items:center;background:var(--ground-2);border:2px solid var(--line);border-radius:16px;padding:14px;color:var(--ink);transition:transform .15s,background .15s}
+.plan:hover{border-color:var(--pink)}
+.plan[aria-pressed="true"]{background:#ffe9ee;border-color:var(--red);transform:scale(1.03)}
+.plan .ic{font-size:1.7rem;width:2.2rem;flex:none;text-align:center}
+.plan b{font-weight:800;display:block}
+.plan span span{font-size:.88rem;color:var(--muted)}
+.note{font-family:var(--hand);font-size:1.5rem;color:var(--red);text-align:center;line-height:1.2;background:#fff0f3;border-radius:14px;padding:12px;margin:0;transform:rotate(-1.5deg)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.final{text-align:center;gap:14px}
+.final .lead{font-family:var(--hand);font-size:1.45rem;color:var(--muted);margin:0}
+.final h1{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,13vw,3.8rem);color:var(--red);line-height:1.05}
+.choice{display:flex;flex-direction:column;gap:2px;padding:14px;border-radius:16px;background:#fff0f3}
+.choice .lbl{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--pink)}
+.choice strong{font-size:1.2rem;font-weight:800}
+.toast{font-size:.9rem;color:var(--muted);min-height:1.2em;margin:0}
+@media (max-width:380px){.day{grid-template-columns:1fr 1fr}.day-name{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){.page,.envelope{animation:none}#hearts,#confetti{display:none}}
+</style>
+</head>
+<body>
+
+<canvas id="hearts" aria-hidden="true"></canvas>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<main id="app"></main>
+
+<script>
+const DAYS=[
+  {name:"Wednesday",date:"Oct 14"},
+  {name:"Thursday",date:"Oct 15"},
+  {name:"Friday",date:"Oct 16"},
+  {name:"Saturday",date:"Oct 17"}
+];
+const FAV="Thursday-night";
+const state={slot:null,plan:null};
+const app=document.getElementById("app");
+const $=id=>document.getElementById(id);
+
+function meal(){return state.slot&&state.slot.endsWith("morning")?"lunch":"dinner"}
+function plans(){
+  const m=meal();
+  return [
+    {id:1,ic:"🎬",t:`Movie, ${m} & a drive`,d:"A film with you, good food, then a slow drive"},
+    {id:2,ic:"😂",t:`Stand-up comedy, ${m} & a drive`,d:"Laughing with you till it hurts, then food and a drive"},
+    {id:3,ic:"🌙",t:`${m[0].toUpperCase()+m.slice(1)}, a drive, and a walk & talk`,d:"Just you and me, talking about everything"}
+  ];
+}
+
+function envelope(){
+  app.innerHTML=`<section class="page env-wrap">
+    <button class="envelope" id="open" aria-label="Open the letter from Mody">
+      <span class="flap"></span><span class="seal">♥</span>
+      <span class="addr">To Tala, from Mody</span>
+    </button>
+    <p class="tap">Tap to open, my love</p>
+  </section>`;
+  $("open").onclick=()=>{burst(40);hello()};
+}
+
+function hello(){
+  app.innerHTML=`<section class="page"><div class="card hello">
+    <h1>Hey my love</h1>
+    <p>I've been thinking about you, and I want to take you out this week.</p>
+    <p class="sig">— Mody</p>
+    <button class="btn" id="go">Okay, show me ♥</button>
+  </div></section>`;
+  $("go").onclick=dates;
+}
+
+function dates(){
+  app.innerHTML=`<section class="page"><div class="card">
+    <p class="from">Mody asks…</p>
+    <h2>When are you all mine?</h2>
+    <div class="days">${DAYS.map(d=>`
+      <div class="day">
+        <div class="day-name">${d.name}<small>${d.date}</small></div>
+        ${["morning","night"].map(t=>{const id=`${d.name}-${t}`;return `<button class="slot" data-id="${id}" aria-pressed="${state.slot===id}">${t==="morning"?"☀️ Morning":"🌙 Night"}${id===FAV?'<span class="fav">Mody\'s favorite ♥</span>':""}</button>`}).join("")}
+      </div>`).join("")}
+    </div>
+    <div class="row"><button class="btn ghost" id="back">Back</button><button class="btn" id="next" ${state.slot?"":"disabled"}>Next</button></div>
+  </div></section>`;
+  app.querySelectorAll(".slot").forEach(b=>b.onclick=()=>{
+    state.slot=b.dataset.id;
+    app.querySelectorAll(".slot").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    $("next").disabled=false;
+  });
+  $("back").onclick=hello;
+  $("next").onclick=planPage;
+}
+
+function planPage(){
+  app.innerHTML=`<section class="page"><div class="card">
+    <p class="from">And now…</p>
+    <h2>What should we do?</h2>
+    <div class="plans">${plans().map(p=>`
+      <button class="plan" data-id="${p.id}" aria-pressed="${state.plan===p.id}">
+        <span class="ic" aria-hidden="true">${p.ic}</span><span><b>${p.t}</b><span>${p.d}</span></span>
+      </button>`).join("")}
+    </div>
+    <p class="note">All restaurants will be chosen by your love, for my cute lover ♥</p>
+    <div class="row"><button class="btn ghost" id="back">Back</button><button class="btn" id="next" ${state.plan?"":"disabled"}>This one!</button></div>
+  </div></section>`;
+  app.querySelectorAll(".plan").forEach(b=>b.onclick=()=>{
+    state.plan=+b.dataset.id;
+    app.querySelectorAll(".plan").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    $("next").disabled=false;
+  });
+  $("back").onclick=dates;
+  $("next").onclick=finalPage;
+}
+
+function finalPage(){
+  const [day,time]=state.slot.split("-");
+  const d=DAYS.find(x=>x.name===day);
+  const p=plans().find(x=>x.id===state.plan);
+  const when=`${day} ${time}, ${d.date}`;
+  app.innerHTML=`<section class="page"><div class="card final">
+    <p class="lead">My cute, beautiful, Mody's heart</p>
+    <h1>Tala, I choose…</h1>
+    <div class="choice"><span class="lbl">When</span><strong>${when}</strong></div>
+    <div class="choice"><span class="lbl">The plan</span><strong>${p.t}</strong></div>
+    <p class="sig">It's a date ♥ — Mody</p>
+    <button class="btn" id="copy">Send my answer to Mody</button>
+    <p class="toast" id="toast" aria-live="polite"></p>
+    <button class="btn ghost" id="redo">Change my mind</button>
+  </div></section>`;
+  const msg=`Tala chooses: ${when} — ${p.t} ♥`;
+  $("copy").onclick=()=>{
+    const t=$("toast");
+    navigator.clipboard.writeText(msg).then(()=>t.textContent="Copied! Paste it in your chat with Mody ♥").catch(()=>t.textContent="Take a screenshot and send it to Mody ♥");
+  };
+  $("redo").onclick=dates;
+  burst(140);
+}
+
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function burst(n){
+  if(reduce)return;
+  const c=$("confetti"),x=c.getContext("2d");
+  c.width=innerWidth;c.height=innerHeight;
+  const cols=["#e8193c","#ff7a93","#ffbf3c","#ffd0da","#ff4d6d"];
+  const P=Array.from({length:n},()=>({x:c.width/2,y:c.height*.4,vx:(Math.random()-.5)*13,vy:-Math.random()*13-4,s:5+Math.random()*6,c:cols[Math.random()*cols.length|0],r:Math.random()*6,h:Math.random()<.45}));
+  let f=0;
+  (function tick(){
+    x.clearRect(0,0,c.width,c.height);
+    P.forEach(p=>{p.vy+=.25;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;
+      if(p.h){x.font=`${p.s*3}px serif`;x.fillText("♥",0,0)}else x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore()});
+    if(++f<200)requestAnimationFrame(tick);else x.clearRect(0,0,c.width,c.height);
+  })();
+}
+
+envelope();
+
+/* hearts rising */
+(function(){
+  if(reduce)return;
+  const c=$("hearts"),x=c.getContext("2d");
+  const cols=["#e8193c","#ff7a93","#ffb3c1","#ffbf3c"];
+  let W,H;
+  function size(){W=c.width=innerWidth;H=c.height=innerHeight}
+  size();addEventListener("resize",size);
+  const mk=init=>({x:Math.random()*W,y:init?Math.random()*H:H+30,s:10+Math.random()*18,v:.3+Math.random()*.7,sw:Math.random()*6,c:cols[Math.random()*cols.length|0],a:.25+Math.random()*.35});
+  const L=Array.from({length:20},()=>mk(true));
+  (function tick(){
+    x.clearRect(0,0,W,H);
+    L.forEach((l,i)=>{l.y-=l.v;l.sw+=.02;if(l.y<-30)L[i]=mk(false);
+      x.globalAlpha=l.a;x.fillStyle=l.c;x.font=`${l.s}px serif`;x.fillText("♥",l.x+Math.sin(l.sw)*12,l.y)});
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
+</body>
+</html>
