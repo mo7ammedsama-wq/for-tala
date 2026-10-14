@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>10 Reasons for Tala</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Anton&family=Gochi+Hand&family=Nunito:wght@600;800&display=swap">
+<style>
+/* Layout: a sticker book — one reason per page on a candy-pink ground, emoji stickers slapped around a white card, a meme panel inside, and a button that grows more desperate each click. Single deliberate look. */
+:root{
+  --ground:#ff5c8a; --ground-2:#ff8fb1; --paper:#fffaf3; --ink:#2b0a17;
+  --red:#e6003d; --lemon:#ffe14d; --mint:#7ee3c4; --muted:#8c3f5a; --meme:#1c1c1c;
+  --display:"Bagel Fat One","Arial Rounded MT Bold",system-ui,sans-serif;
+  --meme-font:"Anton",Impact,"Arial Narrow",sans-serif;
+  --hand:"Gochi Hand","Segoe Print","Comic Sans MS",cursive;
+  --sans:"Nunito",system-ui,sans-serif;
+  color-scheme:light;
+}
+html,body{min-height:100%}
+body{
+  background:var(--ground);
+  background-image:radial-gradient(circle at 20% 15%,var(--ground-2) 0 18%,transparent 19%),radial-gradient(circle at 85% 80%,var(--ground-2) 0 14%,transparent 15%),radial-gradient(var(--ground-2) 1.5px,transparent 2px);
+  background-size:auto,auto,22px 22px;
+  color:var(--ink);font-family:var(--sans);font-size:16px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px;
+  box-sizing:border-box;overflow-x:hidden;
+}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:5}
+main{max-width:480px;margin:0 auto;min-height:calc(100vh - 40px);display:flex;flex-direction:column;justify-content:center;gap:18px}
+.meter{display:flex;flex-direction:column;gap:6px}
+.meter-top{display:flex;justify-content:space-between;align-items:baseline;color:var(--paper);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.bar{height:14px;background:rgb(255 255 255/.35);border-radius:99px;overflow:hidden;border:2px solid var(--paper)}
+.bar span{display:block;height:100%;width:0;background:var(--lemon);border-radius:99px;transition:width .5s cubic-bezier(.2,1.4,.4,1)}
+.stage{position:relative;padding:22px 6px}
+.card{position:relative;z-index:1;background:var(--paper);border-radius:28px;padding:26px 20px 22px;box-shadow:0 6px 0 var(--red),0 20px 40px rgb(80 0 30/.25);display:flex;flex-direction:column;gap:16px;text-align:center;animation:slap .55s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes slap{from{transform:scale(.6) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+.num{font-family:var(--display);color:var(--red);font-size:4.2rem;line-height:.9;margin:0}
+.num small{font-size:1.4rem;color:var(--muted)}
+.reason{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,7vw,2.1rem);line-height:1.15;margin:0;text-wrap:balance}
+.meme{background:var(--meme);border-radius:14px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;transform:rotate(-1.5deg)}
+.meme p{margin:0;font-family:var(--meme-font);color:#fff;font-size:clamp(1.15rem,5.4vw,1.5rem);letter-spacing:.02em;text-transform:uppercase;line-height:1.05;text-shadow:2px 2px 0 #000,-2px 2px 0 #000,2px -2px 0 #000,-2px -2px 0 #000}
+.meme .face{font-size:4.2rem;line-height:1.1;animation:wob 1.8s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(8deg) scale(1.08)}}
+.note{font-family:var(--hand);font-size:1.35rem;color:var(--muted);margin:0}
+.sticker{position:absolute;z-index:2;font-size:2.6rem;filter:drop-shadow(0 0 0 #fff) drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 4px 4px rgb(0 0 0/.25));animation:stick .5s cubic-bezier(.2,1.6,.4,1) both;pointer-events:none}
+@keyframes stick{from{transform:scale(0) rotate(var(--r))}to{transform:scale(1) rotate(var(--r))}}
+.title-big{font-family:var(--display);font-size:clamp(2.4rem,11vw,3.4rem);line-height:1;margin:0;color:var(--ink);text-wrap:balance}
+.title-big em{font-style:normal;color:var(--red);display:inline-block;animation:shake .5s ease-in-out infinite}
+@keyframes shake{25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+.from{font-family:var(--hand);font-size:1.4rem;margin:0;color:var(--muted)}
+.actions{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;min-height:70px}
+button{font:inherit;cursor:pointer;border:0}
+.go{font-family:var(--display);color:#fff;background:var(--red);border-radius:99px;padding:14px 26px;font-size:1.15rem;box-shadow:0 5px 0 #8f0026;transition:transform .15s,font-size .3s,padding .3s}
+.go:active{transform:translateY(4px);box-shadow:0 1px 0 #8f0026}
+.go:focus-visible,.no:focus-visible,.copy:focus-visible{outline:3px solid var(--lemon);outline-offset:3px}
+.go.beg{animation:beg 1s ease-in-out infinite}
+@keyframes beg{50%{transform:scale(1.06) rotate(-2deg)}}
+.no{font-family:var(--sans);font-weight:800;background:var(--paper);color:var(--muted);border:2px solid var(--muted);border-radius:99px;padding:8px 18px;font-size:.95rem;transition:transform .2s}
+.copy{font-family:var(--sans);font-weight:800;background:var(--lemon);color:var(--ink);border-radius:99px;padding:12px 20px;box-shadow:0 4px 0 #c9a800}
+.small{font-size:.85rem;color:var(--muted);margin:0}
+.answer{font-family:var(--hand);font-size:1.3rem;background:#fff;border:2px dashed var(--ground);border-radius:14px;padding:10px;margin:0;user-select:all}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<main>
+  <div class="meter" id="meter" hidden>
+    <div class="meter-top"><span>Convinced-o-meter</span><span id="pct">0%</span></div>
+    <div class="bar"><span id="fill"></span></div>
+  </div>
+  <div class="stage" id="stage"></div>
+</main>
+
+<script>
+const reasons=[
+ {t:"I MISS YOU SOOOOOOOO MUCH",face:"😭",top:"Me: I'm fine",bot:"Also me without Tala:",st:["🥺","💔","📞"]},
+ {t:"I want to hold ur hands 😔",face:"🤲",top:"Hand available",bot:"Only for Tala",st:["🤝","✨","💅"]},
+ {t:"I want to kiss u so bad",face:"😚",top:"Kisses loading…",bot:"Please wait ███░",st:["💋","😘","🔥"]},
+ {t:"I want to feel u near me",face:"🧲",top:"Me",bot:"Trying to be 1cm from you",st:["🫂","📍","💞"]},
+ {t:"I miss u more than number 1",face:"📈",top:"Missing you level:",bot:"Over 9000",st:["🚀","🤯","💯"]},
+ {t:"I want to do the things we couldn't",face:"📝",top:"The list",bot:"Is getting very long",st:["✅","🗓️","😏"]},
+ {t:"I want to massage ur feet for u while I'm driving",face:"🚗",top:"Driver: Mody",bot:"Foot spa: included",st:["🦶","💆‍♀️","🛣️"]},
+ {t:"I want to feed you with my hands",face:"🍝",top:"Open wide",bot:"Here comes the plane ✈️",st:["🍓","🍰","😋"]},
+ {t:"I want to feel ur head laying on my shoulder while we walk",face:"🚶",top:"Your head",bot:"My shoulder = its home",st:["🌙","👫","🌸"]},
+ {t:"I want to hear your laugh and kiss u while laughing",face:"😂",top:"Your laugh",bot:"My favorite song",st:["🎶","💘","🥰"]}
+];
+const btns=["Show me 🙈","Okay okay, next","Hmm… go on","Keep going 👀","You're kinda convincing","Wait, there's more??","Okay I'm smiling","Stop it 🙈🙈","I'm almost convinced…","Last one…","Okay Mody, you win 💘"];
+const noLines=["No","Are you sure?","Really??","Think again 🥺","You can't catch me","Just press yes 😤"];
+const spots=[["-8px","-10px","-14deg"],["auto","-8px","12deg",true],["-10px","auto","8deg",false,true]];
+const stage=document.getElementById("stage"),meter=document.getElementById("meter");
+let step=0,noCount=0;
+
+function stickers(list){return list.map((s,i)=>{const p=spots[i];return `<span class="sticker" style="--r:${p[2]};${p[3]?"right":"left"}:${p[3]?"-6px":p[0]};${p[4]?"bottom":"top"}:${p[4]?"-14px":p[1]};${p[4]?"right:22px;left:auto;":""}animation-delay:${.25+i*.12}s">${s}</span>`}).join("")}
+function setMeter(){const v=Math.round(step/10*100);document.getElementById("fill").style.width=v+"%";document.getElementById("pct").textContent=v+"%"}
+
+function render(){
+  if(step===0){
+    meter.hidden=true;
+    stage.innerHTML=`${stickers(["💌","😳","🫶"])}<div class="card">
+      <p class="from">from Mody, to Tala</p>
+      <h1 class="title-big">10 reasons why you should go out <em>NOW</em></h1>
+      <div class="meme"><div class="face">🥹</div><p>Mody before sending this:</p><p>"She'll say yes, right?"</p></div>
+      <div class="actions"><button class="go" id="go">${btns[0]}</button></div></div>`;
+  }else if(step<=10){
+    meter.hidden=false;setMeter();
+    const r=reasons[step-1];
+    stage.innerHTML=`${stickers(r.st)}<div class="card">
+      <p class="num">${step}<small> / 10</small></p>
+      <h2 class="reason">${r.t}</h2>
+      <div class="meme"><p>${r.top}</p><div class="face">${r.face}</div><p>${r.bot}</p></div>
+      <div class="actions"><button class="go${step>=8?" beg":""}" id="go" style="font-size:${1.1+step*.06}rem;padding:${14+step}px ${26+step*2}px">${btns[step]}</button></div></div>`;
+    if(step===10)burst(40);
+  }else{
+    meter.hidden=false;setMeter();
+    stage.innerHTML=`${stickers(["🥺","👉👈","💗"])}<div class="card">
+      <h2 class="title-big">So… are we going out <em>NOW?</em></h2>
+      <div class="meme"><div class="face">🐶</div><p>Mody waiting for your answer</p></div>
+      <div class="actions" id="acts"><button class="go beg" id="yes" style="font-size:1.6rem;padding:18px 40px">YES 💘</button><button class="no" id="no">${noLines[0]}</button></div></div>`;
+    document.getElementById("yes").onclick=yes;
+    const no=document.getElementById("no");
+    const dodge=e=>{e.preventDefault();noCount++;no.textContent=noLines[Math.min(noCount,noLines.length-1)];
+      const x=(Math.random()*160-80),y=(Math.random()*60-10);no.style.transform=`translate(${x}px,${y}px) scale(${Math.max(.5,1-noCount*.1)})`;
+      const y2=document.getElementById("yes");y2.style.fontSize=(1.6+noCount*.15)+"rem"};
+    no.addEventListener("click",dodge);no.addEventListener("pointerenter",dodge);
+    return;
+  }
+  document.getElementById("go").onclick=()=>{step++;render();if(step<=10)pop(12)};
+}
+
+function yes(){
+  burst(160);
+  const msg="Mody, you convinced me. Let's go out NOW 💘";
+  stage.innerHTML=`${stickers(["🎉","💃","💖"])}<div class="card">
+    <h2 class="title-big">YAAAY <em>💘</em></h2>
+    <div class="meme"><div class="face">🕺</div><p>Mody right now:</p><p>Best day ever</p></div>
+    <p class="from">Get ready, I'm coming for you ♥ — Mody</p>
+    <p class="answer" id="ans">${msg}</p>
+    <div class="actions"><button class="copy" id="copy">Copy & send it to Mody</button><p class="small" id="ok"></p></div></div>`;
+  document.getElementById("copy").onclick=()=>{const ok=document.getElementById("ok");
+    navigator.clipboard.writeText(msg).then(()=>ok.textContent="Copied! Paste it in your chat with Mody 💌").catch(()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("ans"));const s=getSelection();s.removeAllRanges();s.addRange(r);ok.textContent="Text selected. Copy it and send it to Mody 💌"})};
+}
+
+/* confetti + hearts */
+const cv=document.getElementById("fx"),cx=cv.getContext("2d");let parts=[];
+function size(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}size();addEventListener("resize",size);
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const glyphs=["💖","💕","✨","💘","🌸"],cols=["#ffe14d","#e6003d","#7ee3c4","#ffffff"];
+function add(n,emoji){if(reduce)return;for(let i=0;i<n;i++)parts.push({x:innerWidth/2+(Math.random()-.5)*120,y:innerHeight*.55,vx:(Math.random()-.5)*12,vy:-Math.random()*14-4,a:Math.random()*6,va:(Math.random()-.5)*.3,l:120,e:emoji&&Math.random()<.5?glyphs[i%glyphs.length]:null,c:cols[i%cols.length]})}
+function pop(n){add(n,true)}function burst(n){add(n,true)}
+(function loop(){cx.clearRect(0,0,innerWidth,innerHeight);parts=parts.filter(p=>p.l-->0);for(const p of parts){p.vy+=.4;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.globalAlpha=Math.min(1,p.l/40);if(p.e){cx.font="22px serif";cx.fillText(p.e,-11,8)}else{cx.fillStyle=p.c;cx.fillRect(-5,-3,10,6)}cx.restore()}requestAnimationFrame(loop)})();
+
+render();
+</script>
+</body>
+</html>
